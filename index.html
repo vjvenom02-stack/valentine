@@ -5,49 +5,64 @@
   <title>Be My Valentine ❤️</title>
   <style>
     body {
+      margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
+
     .box {
-      text-align: center;
       background: white;
       padding: 40px;
       border-radius: 20px;
+      text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
+
     h1 {
       color: #e60073;
-      font-size: 40px;
+      font-size: 38px;
     }
+
     .heart {
       font-size: 80px;
-      animation: pulse 1s infinite;
+      animation: pulse 1.2s infinite;
     }
+
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.2); }
       100% { transform: scale(1); }
     }
+
+    .buttons {
+      margin-top: 30px;
+      position: relative;
+      height: 80px;
+    }
+
     button {
       font-size: 20px;
-      padding: 10px 25px;
-      margin: 20px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 30px;
+      border-radius: 25px;
       cursor: pointer;
     }
+
     #yes {
       background: #ff4d6d;
       color: white;
     }
+
     #no {
       background: #ccc;
+      color: black;
       position: absolute;
+      left: 140px;
     }
   </style>
 </head>
@@ -55,20 +70,39 @@
 
   <div class="box">
     <div class="heart">❤️</div>
-    <h1>Yuvika,<br>Will you be my Valentine?</h1>
-    <button id="yes" onclick="yesClick()">Yes</button>
-    <button id="no" onmouseover="moveNo()">No</button>
+    <h1>Yuvika, will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClick()">Yes</button>
+      <button id="no">No</button>
+    </div>
   </div>
 
   <script>
-    function moveNo() {
-      const no = document.getElementById("no");
-      no.style.left = Math.random() * (window.innerWidth - 100) + "px";
-      no.style.top = Math.random() * (window.innerHeight - 50) + "px";
-    }
+    const noBtn = document.getElementById("no");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 100 - 50;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
 
     function yesClick() {
-      document.body.innerHTML = "<h1 style='color:white;font-size:50px;'>Yay ❤️ I love you, Yuvika!</h1>";
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items:center;
+          background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+          font-family:Arial;
+          text-align:center;
+        ">
+          <h1 style="font-size:48px;color:#e60073;">Yayyy ❤️</h1>
+          <p style="font-size:24px;">You just made me the happiest person 💕</p>
+        </div>
+      `;
     }
   </script>
 
